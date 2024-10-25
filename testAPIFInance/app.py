@@ -1,122 +1,98 @@
-pip install yfinance streamlit matplotlib
-
 import streamlit as st
 import yfinance as yf
-import matplotlib.pyplot as plt
+import pydeck as pdk
+import pandas as pd
+import numpy as np
 
-# Define a list of ticker symbols for selection
-ticker_symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META", "NFLX", "NVDA", "BRK-B", "JPM", "V"]
+# Chargement des données des entreprises à partir du CSV
+companies_df = pd.read_csv("data.csv")  # Assurez-vous que le chemin est correct
 
-# Streamlit app
-st.title("Stock Data Dashboard")
+# DataFrame pour stocker les données des emplacements
+locations_df = []
 
-# Dropdown to select a ticker symbol
-selected_ticker = st.selectbox("Select a stock ticker:", ticker_symbols)
+# Fonction pour générer une couleur en fonction du chiffre d'affaires
+def revenue_to_color(revenue):
+    # Normaliser les revenus pour obtenir une couleur entre 0 et 1
+    norm_revenue = min(max(revenue, 0), 100) / 100  # Limiter à 100 milliards pour la normalisation
+    # Générer une couleur entre bleu clair et bleu foncé
+    r = int(0 * (1 - norm_revenue) + 0)  # Rouge reste 0
+    g = int(0 * (1 - norm_revenue) + 0)  # Vert reste 0
+    b = int(255 * norm_revenue)  # Bleu varie
+    return [r, g, b, 160]
 
-# Create a Ticker object based on selection
-ticker = yf.Ticker(selected_ticker)
+# Boucle à travers chaque entreprise pour récupérer les données nécessaires
+for index, row in companies_df.iterrows():
+    ticker = yf.Ticker(row['Ticker'])
+    try:
+        # Récupérer les données financières
+        market_cap = ticker.info.get('marketCap', 0) / 1e9  # Capitalisation boursière en milliards
+        revenue = ticker.info.get('totalRevenue', 0) / 1e9  # Revenus en milliards
+        net_income = ticker.info.get('netIncome', 0) / 1e9  # Bénéfice net en milliards
+        pe_ratio = ticker.info.get('trailingPE', "N/A")  # Ratio Cours/Bénéfice
+        inception = ticker.info.get('yearFounded', "N/A")  # Année de création
+        
+        # Vérifier si la capitalisation boursière est supérieure à 20 milliards
+        if market_cap > 20:
+            # Hauteur : capitalisation boursière
+            height = market_cap * 100  # Multiplier par 100 pour une meilleure visualisation
+            
+            # Largeur : revenus
+            width = revenue  # Utiliser les revenus directement pour la largeur
 
-# Tabs for different data categories
-tabs = st.tabs(["Overview", "Historical Data", "Financial Statements", "Shareholders", "Analyst Ratings", "Options", "News"])
+            # Couleur basée sur les revenus
+            color = revenue_to_color(revenue)
 
-# Overview tab
-with tabs[0]:
-    st.header(f"{selected_ticker} - Company Information")
-    st.write(ticker.info)
-    st.header("Calendar Events")
-    st.write(ticker.calendar)
+            # Ajouter les données de l'entreprise au DataFrame
+            locations_df.append({
+                "name": row['Name'],
+                "market_cap": f"{market_cap:.1f}B",  # Formater la capitalisation boursière
+                "revenue": f"{revenue:.1f}B",  # Revenus formatés
+                "net_income": f"{net_income:.1f}B",  # Bénéfice net formaté
+                "pe_ratio": pe_ratio,  # Ratio Cours/Bénéfice
+                "inception": inception,  # Année de création
+                "latitude": row['Latitude'],
+                "longitude": row['Longitude'],
+                "elevation": height,  # Hauteur basée sur la capitalisation boursière
+                "width": width,  # Largeur basée sur les revenus
+                "color": color
+            })
+    except Exception as e:
+        st.warning(f"Could not retrieve data for {row['Ticker']}: {e}")
 
-# Historical Data tab
-with tabs[1]:
-    st.header(f"{selected_ticker} - Historical Data (Last Month)")
-    hist_data = ticker.history(period="1mo")
-    st.line_chart(hist_data['Close'], width=0, height=400, use_container_width=True)
-    st.write("Metadata for historical data:")
-    st.write(ticker.history_metadata)
-    
-    # Plot Volume
-    fig, ax = plt.subplots()
-    ax.bar(hist_data.index, hist_data['Volume'], color='purple')
-    ax.set_title(f"{selected_ticker} - Trading Volume (1 Month)")
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Volume")
-    st.pyplot(fig)
+# Convertir le DataFrame en DataFrame pandas pour Pydeck
+locations_df = pd.DataFrame(locations_df)
 
-    # Stock Actions
-    st.header("Stock Actions")
-    st.write(ticker.actions)
-    st.write("Dividends:", ticker.dividends)
-    st.write("Splits:", ticker.splits)
+# Créer une couche 3D pour la carte
+layer = pdk.Layer(
+    "ColumnLayer",
+    data=locations_df,
+    get_position="[longitude, latitude]",
+    get_elevation="elevation",
+    elevation_scale=1,  # Ajustez ceci si nécessaire
+    radius=20000,  # Réduire la largeur des colonnes
+    get_fill_color="color",
+    pickable=True,
+    auto_highlight=True,
+)
 
-# Financial Statements tab
-with tabs[2]:
-    st.header(f"{selected_ticker} - Financial Statements")
-    st.subheader("Income Statement")
-    st.write(ticker.income_stmt)
-    st.subheader("Quarterly Income Statement")
-    st.write(ticker.quarterly_income_stmt)
+# Configuration de la vue de la carte
+view_state = pdk.ViewState(
+    latitude=39.5,
+    longitude=-98.35,
+    zoom=3,
+    pitch=45,
+)
 
-    st.subheader("Balance Sheet")
-    st.write(ticker.balance_sheet)
-    st.subheader("Quarterly Balance Sheet")
-    st.write(ticker.quarterly_balance_sheet)
+# Afficher la carte avec un info-bulle enrichi
+deck = pdk.Deck(
+    map_style="mapbox://styles/mapbox/light-v9",
+    initial_view_state=view_state,
+    layers=[layer],
+    tooltip={
+        "html": "<b>{name}</b><br/>Market Cap: {market_cap}<br/>Revenue: {revenue}<br/>Net Income: {net_income}<br/>P/E Ratio: {pe_ratio}<br/>Year Founded: {inception}",
+        "style": {"color": "white"},
+    },
+)
 
-    st.subheader("Cash Flow Statement")
-    st.write(ticker.cashflow)
-    st.subheader("Quarterly Cash Flow Statement")
-    st.write(ticker.quarterly_cashflow)
-
-# Shareholders tab
-with tabs[3]:
-    st.header(f"{selected_ticker} - Shareholders")
-    st.subheader("Major Holders")
-    st.write(ticker.major_holders)
-    st.subheader("Institutional Holders")
-    st.write(ticker.institutional_holders)
-    st.subheader("Mutual Fund Holders")
-    st.write(ticker.mutualfund_holders)
-    st.subheader("Insider Transactions")
-    st.write(ticker.insider_transactions)
-    st.subheader("Insider Purchases")
-    st.write(ticker.insider_purchases)
-    st.subheader("Insider Roster Holders")
-    st.write(ticker.insider_roster_holders)
-    st.subheader("Sustainability")
-    st.write(ticker.sustainability)
-
-# Analyst Ratings tab
-with tabs[4]:
-    st.header(f"{selected_ticker} - Analyst Ratings and Recommendations")
-    st.subheader("Recommendations")
-    st.write(ticker.recommendations)
-    st.subheader("Recommendations Summary")
-    st.write(ticker.recommendations_summary)
-    st.subheader("Upgrades and Downgrades")
-    st.write(ticker.upgrades_downgrades)
-
-    st.subheader("Analyst Data")
-    st.write("Price Targets:", ticker.analyst_price_targets)
-    st.write("Earnings Estimate:", ticker.earnings_estimate)
-    st.write("Revenue Estimate:", ticker.revenue_estimate)
-    st.write("Earnings History:", ticker.earnings_history)
-    st.write("EPS Trend:", ticker.eps_trend)
-    st.write("EPS Revisions:", ticker.eps_revisions)
-    st.write("Growth Estimates:", ticker.growth_estimates)
-
-# Options tab
-with tabs[5]:
-    st.header(f"{selected_ticker} - Options Data")
-    st.write("Available Options Expiration Dates:", ticker.options)
-    selected_date = st.selectbox("Select an expiration date:", ticker.options)
-    if selected_date:
-        opt_chain = ticker.option_chain(selected_date)
-        st.subheader("Calls")
-        st.write(opt_chain.calls)
-        st.subheader("Puts")
-        st.write(opt_chain.puts)
-
-# News tab
-with tabs[6]:
-    st.header(f"{selected_ticker} - Latest News")
-    st.write(ticker.news)
-
+# Afficher la carte dans Streamlit
+st.pydeck_chart(deck)

@@ -1,0 +1,139 @@
+Ticker,Name,Latitude,Longitude
+AAPL,Apple Inc,37.3349,-122.0090
+MSFT,Microsoft Corp,47.6396,-122.1281
+GOOGL,Alphabet Inc,37.4220,-122.0841
+AMZN,Amazon.com Inc,47.6062,-122.3321
+TSLA,Tesla Inc,37.3947,-122.1500
+META,Meta Platforms Inc,37.4848,-122.1484
+NFLX,Netflix Inc,37.2594,-121.9638
+NVDA,NVIDIA Corp,37.3695,-122.0365
+BRK-B,Berkshire Hathaway Inc,41.2586,-95.9378
+JPM,JPMorgan Chase & Co,40.7566,-73.9884
+V,Visa Inc,37.5665,-122.3255
+DIS,Walt Disney Co,33.8045,-117.9189
+KO,Coca-Cola Co,33.7490,-84.3879
+PEP,PepsiCo Inc,40.4897,-74.2772
+INTC,Intel Corp,37.3872,-121.9672
+CSCO,Cisco Systems Inc,37.3947,-122.1500
+PFE,Pfizer Inc,40.7587,-73.9787
+NFLX,Netflix Inc,37.2594,-121.9638
+NKE,Nike Inc,45.5455,-122.7217
+XOM,Exxon Mobil Corp,29.7652,-95.3883
+WMT,Walmart Inc,36.3865,-94.2088
+BMY,Bristol Myers Squibb Co,40.7181,-74.0077
+TXN,Texas Instruments Inc,32.8371,-96.6711
+MDT,Medtronic plc,44.9770,-93.2650
+HON,Honeywell International Inc,33.5982,-112.2105
+AVGO,Broadcom Inc,33.8432,-117.8270
+LMT,Lockheed Martin Corp,38.9571,-77.0998
+AMD,Advanced Micro Devices Inc,37.3702,-121.9220
+SBUX,Starbucks Corp,47.6205,-122.3493
+UNH,UnitedHealth Group Inc,44.8378,-93.2923
+MRK,Merck & Co Inc,40.4053,-74.4462
+AMGN,Amgen Inc,34.1478,-118.3535
+NFLX,Netflix Inc,37.2594,-121.9638
+IBM,International Business Machines Corp,41.8333,-73.1839
+T,AT&T Inc,32.8343,-97.1059
+CAT,Caterpillar Inc,40.2161,-88.0463
+BA,Boeing Co,47.4572,-122.3092
+SYK,Stryker Corp,42.0570,-86.0197
+PLD,Prologis Inc,37.7749,-122.4194
+DHR,Danaher Corp,38.9426,-77.0715
+CVS,CVS Health Corp,41.8227,-71.4200
+COST,COSTCO Wholesale Corp,47.3076,-122.4110
+HIG,The Hartford,41.7679,-72.6851
+ZTS,Zoetis Inc,40.4180,-74.1572
+SPGI,S&P Global Inc,40.7587,-73.9787
+MDLZ,Mondelez International Inc,41.8343,-87.9489
+ISRG,Intuitive Surgical Inc,37.4310,-122.0308
+CB,Chubb Limited,40.7322,-73.9982
+TROW,T. Rowe Price Group Inc,39.3351,-76.6130
+WBA,Walgreens Boots Alliance Inc,42.0800,-87.6763
+NTRS, Northern Trust Corp,41.8892,-87.6262
+FISV,Fiserv Inc,43.0338,-87.9015
+ADI,Analog Devices Inc,42.4820,-70.7110
+ORCL,Oracle Corp,37.3379,-121.8950
+GLW,Corning Inc,42.1442,-76.4421
+NDAQ,NASDAQ Inc,40.7315,-73.9856
+MCO,Moody's Corp,40.7474,-73.9748
+WDC,Western Digital Corp,34.3074,-118.7492
+LRCX,Lam Research Corp,37.4910,-121.9470
+PSA,Public Storage,34.0671,-118.1672
+CHTR,Charter Communications Inc,34.0286,-118.4900
+ADP,Automatic Data Processing Inc,40.7309,-73.9872
+VRSK,Verisk Analytics Inc,40.7603,-74.0382
+LNT,Alliant Energy Corp,43.0243,-93.6385
+HUM,Humana Inc,38.2360,-85.5761
+DTE,DTE Energy Co,42.3394,-83.0442
+NDAQ,NASDAQ Inc,40.7315,-73.9856
+JCI,Johnson Controls International plc,43.0442,-87.9075
+AMT,American Tower Corp,35.5792,-97.4784
+PSA,Public Storage,34.0671,-118.1672
+VTRS,Viatris Inc,40.4423,-80.0056
+AMCR,Amcor plc,37.3332,-122.0232
+NKE,Nike Inc,45.5455,-122.7217
+FTNT,Fortinet Inc,37.3861,-122.0838
+GLW,Corning Inc,42.1442,-76.4421
+PKG,Packaging Corporation of America,42.1324,-88.2070
+AES,AES Corporation,38.8903,-77.0413
+PRGO,Perrigo Company plc,42.3764,-83.0790
+RMD,ResMed Inc,37.7887,-122.4013
+FDX,FedEx Corporation,35.0456,-90.0490
+APD,AIR Products and Chemicals Inc,40.0702,-75.3551
+VFC,VF Corporation,39.7982,-105.1840
+NKE,Nike Inc,45.5455,-122.7217
+KMB,Kimberly-Clark Corporation,32.8284,-96.6391
+TAP,Molson Coors Beverage Company,39.7715,-105.2203
+EXC,Exelon Corporation,39.8955,-75.4326
+MCO,Moody's Corporation,40.7474,-73.9748
+PXD,Pioneer Natural Resources Company,32.7552,-97.2200
+SRE,Sempra Energy,32.8234,-116.1542
+CDW,CDW Corporation,42.0507,-88.0938
+RMD,ResMed Inc,37.7887,-122.4013
+AEE,Ameren Corporation,38.6270,-90.1994
+DOV,Dover Corporation,39.4890,-84.1966
+LNT,Alliant Energy Corporation,43.0243,-93.6385
+PH,Parker-Hannifin Corporation,41.9018,-81.5862
+AMGN,Amgen Inc,34.1478,-118.3535
+HST,Host Hotels & Resorts Inc,38.8895,-77.0347
+ETR,Entergy Corporation,30.0130,-90.1815
+HIG,The Hartford,41.7679,-72.6851
+BAX,Baxter International Inc,41.8555,-88.0371
+CARR,Carrier Global Corporation,41.2252,-73.2210
+DIS,Walt Disney Company,33.8045,-117.9189
+FRC,First Republic Bank,37.7863,-122.3929
+ETR,Entergy Corporation,30.0130,-90.1815
+FLR,Fluor Corporation,33.8521,-117.7264
+FIS,FIS Inc,30.2464,-81.5501
+OXY,Occidental Petroleum Corporation,34.0222,-118.4904
+RCL,Royal Caribbean Group,25.7826,-80.2318
+FMC,FMC Corporation,39.8787,-75.1209
+MPC,Marathon Petroleum Corporation,41.6307,-83.7439
+SLB,Schlumberger Limited,29.8972,-95.5415
+XYL,Xylem Inc,40.7468,-73.8483
+NEM,Newmont Corporation,39.2568,-106.4181
+TPR,Tapestry Inc,40.7282,-73.9808
+XRX,Xerox Holdings Corporation,40.7458,-73.9528
+PNC,PNC Financial Services Group,40.4406,-79.9959
+ALB,Albemarle Corporation,35.5299,-80.5964
+BK,Bank of New York Mellon Corporation,40.7034,-74.0086
+LNT,Alliant Energy Corporation,43.0243,-93.6385
+KEY,KeyCorp,41.4942,-81.6954
+AON,Aon plc,41.8919,-87.6233
+HSY,The Hershey Company,40.2854,-76.6511
+DOV,Dover Corporation,39.4890,-84.1966
+BIIB,Biogen Inc,42.3175,-71.1902
+JCI,Johnson Controls International plc,43.0442,-87.9075
+QRVO,Qorvo Inc,35.0832,-78.8515
+BXP,Boston Properties Inc,42.3601,-71.0589
+DTE,DTE Energy Company,42.3394,-83.0442
+XLNX,Xilinx Inc,37.4423,-122.2005
+CFG,Citizens Financial Group Inc,41.8264,-71.4140
+MTD,West Pharmaceutical Services Inc,40.2280,-75.2557
+JCI,Johnson Controls International plc,43.0442,-87.9075
+BF-B,Brown & Brown Inc,29.6896,-81.9245
+VRTX,Vertex Pharmaceuticals Incorporated,42.3592,-71.0596
+NDAQ,NASDAQ Inc,40.7315,-73.9856
+PNC,PNC Financial Services Group,40.4406,-79.9959
+PKG,Packaging Corporation of America,42.1324,-88.2070
+DHR,Danaher Corporation,38.9426,-77.0715
