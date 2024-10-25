@@ -1,5 +1,4 @@
-# Install necessary packages before running
-# !pip install yfinance streamlit matplotlib
+pip install yfinance streamlit matplotlib
 
 import streamlit as st
 import yfinance as yf
